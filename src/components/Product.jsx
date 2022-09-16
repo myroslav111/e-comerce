@@ -51,7 +51,7 @@ const Image = styled.img`
   width: 70%;
   z-index: 2;
 `;
-
+/* width: {${}} ; */
 const Icon = styled.div`
   width: 40px;
   height: 40px;
@@ -70,6 +70,8 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+  // console.log(Container.displayName);
+  // .componentStyle.rules[0]
   return (
     <Container>
       <Circle />

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import { NavLink } from 'react-router-dom';
 
 const Container = styled.div`
   flex: 1;
@@ -36,6 +37,7 @@ const Info = styled.div`
 const Title = styled.h1`
   color: white;
   margin-bottom: 20px;
+  color: tomato;
 `;
 
 const Button = styled.button`
@@ -85,11 +87,13 @@ const Button = styled.button`
 const CategoriesItem = ({ item }) => {
   return (
     <Container>
-      <Image src={item.image} />
-      <Info>
-        <Title>{item.category}</Title>
-        <Button>SHOP NOW</Button>
-      </Info>
+      <NavLink to={`/products/${item.category}`}>
+        <Image src={item.image} />
+        <Info>
+          <Title>{item.category}</Title>
+          <Button>SHOP NOW</Button>
+        </Info>
+      </NavLink>
     </Container>
   );
 };
