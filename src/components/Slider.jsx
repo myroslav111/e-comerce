@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+
 import { useState } from 'react';
 import { sliderItems } from 'data';
+import { mobile } from '../responsive';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 const Container = styled.div`
   width: 100%;
@@ -11,6 +14,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+  ${mobile({ display: 'none' })}
 `;
 
 const Arrow = styled.div`
@@ -30,6 +34,13 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+  &:hover {
+    background-color: teal;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -93,7 +104,7 @@ const Slider = () => {
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick('left')}>
-        <KeyboardArrowLeftOutlinedIcon />
+        <ArrowLeftIcon fontSize="large" />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
         {sliderItems.map(item => (
@@ -110,7 +121,7 @@ const Slider = () => {
         ))}
       </Wrapper>
       <Arrow direction="right" onClick={() => handleClick('right')}>
-        <KeyboardArrowRightOutlinedIcon />
+        <ArrowRightIcon fontSize="large" />
       </Arrow>
     </Container>
   );

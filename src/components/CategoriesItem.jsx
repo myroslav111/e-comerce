@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   flex: 1;
@@ -16,6 +17,8 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 20px;
+  ${mobile({ height: '20vh', objectFit: 'contain' })}
 `;
 
 const Info = styled.div`
@@ -37,6 +40,7 @@ const Title = styled.h1`
 
 const Button = styled.button`
   background-color: #111827;
+  background-color: teal;
   border: 1px solid transparent;
   border-radius: 0.75rem;
   box-sizing: border-box;

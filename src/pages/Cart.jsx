@@ -1,14 +1,16 @@
 import Announcement from 'components/Announcement';
 import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
-// import Product from 'components/Product';
+import { AddSharp, RemoveSharp } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
+import { mobile } from '../responsive';
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({ padding: '10px' })}
 `;
 
 const Title = styled.h1`
@@ -33,7 +35,9 @@ const TopButton = styled.button`
   color: ${props => props.type === 'filled' && 'white'};
 `;
 
-const TopTexts = styled.div``;
+const TopTexts = styled.div`
+  ${mobile({ display: 'none' })}
+`;
 
 const TopText = styled.span`
   text-decoration: underline;
@@ -44,6 +48,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: 'column' })}
 `;
 
 const Info = styled.div`
@@ -53,6 +58,9 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  ${mobile({ flexDirection: 'column' })}
 `;
 const ProductDetail = styled.div`
   flex: 2;
@@ -84,7 +92,79 @@ const PriceDetail = styled.div`
   justify-content: center;
 `;
 
-const Summary = styled.div``;
+const ProductAmountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const ProductPrice = styled.div`
+  font-size: 30px;
+  font-weight: 200;
+  ${mobile({ marginBottom: '12px' })}
+`;
+
+const ProductAmount = styled.div`
+  font-size: 24px;
+  margin: 5px;
+  ${mobile({ margin: '5px 15px' })}
+`;
+
+const Hr = styled.hr`
+  background-color: #eee;
+  border: none;
+  height: 1px;
+`;
+
+const Summary = styled.div`
+  flex: 1;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+  height: 50vh;
+`;
+
+const SummaryTitle = styled.h1`
+  font-weight: 200;
+`;
+
+const SummaryItem = styled.div`
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: ${props => props.type === 'total' && '500'};
+  font-size: ${props => props.type === 'total' && '24px'};
+`;
+
+const SummaryItemText = styled.span``;
+
+const SummaryItemPrice = styled.span``;
+
+const Button = styled.button`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  background: #6e6d70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #dfdedf;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+      0px 0.5px 1px rgba(0, 0, 0, 0.1),
+      0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+  }
+`;
 
 const Cart = () => {
   return (
@@ -119,10 +199,62 @@ const Cart = () => {
                   </ProductSize>
                 </Details>
               </ProductDetail>
-              <PriceDetail></PriceDetail>
+              <PriceDetail>
+                <ProductAmountContainer>
+                  <RemoveSharp />
+                  <ProductAmount>2</ProductAmount>
+                  <AddSharp />
+                </ProductAmountContainer>
+                <ProductPrice>$10</ProductPrice>
+              </PriceDetail>
+            </Product>
+            <Hr />
+            <Product>
+              <ProductDetail>
+                <Image src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" />
+                <Details>
+                  <ProductName>
+                    <b>Product:</b>Slim Fit T-Shirts
+                  </ProductName>
+                  <ProductColor color="black" />
+                  <ProductId>
+                    <b>ID:</b>595959595
+                  </ProductId>
+                  <ProductSize>
+                    <b>Size:</b>SL
+                  </ProductSize>
+                </Details>
+              </ProductDetail>
+              <PriceDetail>
+                <ProductAmountContainer>
+                  <AddSharp />
+                  <ProductAmount>2</ProductAmount>
+                  <RemoveSharp />
+                </ProductAmountContainer>
+                <ProductPrice>$10</ProductPrice>
+              </PriceDetail>
             </Product>
           </Info>
-          <Summary>summary</Summary>
+          <Summary>
+            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryItem>
+              <SummaryItemText>Subtotal</SummaryItemText>
+              <SummaryItemPrice>$ 80</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Estimated Shipping</SummaryItemText>
+              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Shipping Discount</SummaryItemText>
+              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem type="total">
+              <SummaryItemText>Total</SummaryItemText>
+              <SummaryItemPrice>$ 80</SummaryItemPrice>
+            </SummaryItem>
+            <Button>CHECKOUT NOW</Button>
+          </Summary>
         </Bottom>
       </Wrapper>
       <Footer />
